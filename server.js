@@ -7,8 +7,8 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const morgan = require("morgan");
 const cors = require('cors');
-
 const cookieParser = require("cookie-parser");
+const errorHandler=require("./middlewares/errorMiddleware")
 
 
 // middlewares
@@ -28,6 +28,8 @@ readdirSync("./routes").map(r => app.use("/api/v1", require(`./routes/${r}`)))
 // server
 const port = process.env.PORT || 8000;
 
+// error Middleware
+app.use(errorHandler);
 
 // Connect to DB and start server
 mongoose
