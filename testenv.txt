@@ -3,3 +3,6 @@ DATABASE="mongodb://127.0.0.1:27017/pinvent"
 TOKEN_SECRET=544563543523ddfgdfbdffEWRWERWERWR
 JWT_SECRET=gfdgld564564564RWERWRWERWRWERfdgdfewertdfdgdfg
 NODE_ENV="development"
+EMAIL_HOST=smtp-mail.outlook.com
+EMAIL_USER=faisalostad@outlook.com
+EMAIL_PASS='MArt@msb2020'
