@@ -248,7 +248,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     .digest("hex");
 
     console.log("+++++++++++++",hashedToken);
-    res.send("Forgot password updated")
+    // res.send("Forgot password updated")
 
   // Save Token to DB
   await new Token({
@@ -259,28 +259,28 @@ const forgotPassword = asyncHandler(async (req, res) => {
   }).save();
 
   // Construct Reset Url
-  // const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
+  const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
 
   // Reset Email
-  // const message = `
-  //     <h2>Hello ${user.name}</h2>
-  //     <p>Please use the url below to reset your password</p>  
-  //     <p>This reset link is valid for only 30minutes.</p>
-  //     <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
-  //     <p>Regards...</p>
-  //     <p>Pinvent Team</p>
-  //   `;
-  // const subject = "Password Reset Request";
-  // const send_to = user.email;
-  // const sent_from = process.env.EMAIL_USER;
+  const message = `
+      <h2>Hello ${user.name}</h2>
+      <p>Please use the url below to reset your password</p>  
+      <p>This reset link is valid for only 30minutes.</p>
+      <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+      <p>Regards...</p>
+      <p>Pinvent Team</p>
+    `;
+  const subject = "Password Reset Request";
+  const send_to = user.email;
+  const sent_from = process.env.EMAIL_USER;
 
-  // try {
-  //   await sendEmail(subject, message, send_to, sent_from);
-  //   res.status(200).json({ success: true, message: "Reset Email Sent" });
-  // } catch (error) {
-  //   res.status(500);
-  //   throw new Error("Email not sent, please try again");
-  // }
+  try {
+    await sendEmail(subject, message, send_to, sent_from);
+    res.status(200).json({ success: true, message: "Reset Email Sent again" });
+  } catch (error) {
+    res.status(500);
+    throw new Error("Email not sent, please try again");
+  }
 });
 
 // Reset Password
