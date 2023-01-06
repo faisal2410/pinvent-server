@@ -1,0 +1,4 @@
+register
+1. receive name, email and password
+2. validation
+3.

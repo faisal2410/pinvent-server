@@ -50,7 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now() + 7* 1000 * 86400), // 7 day
     sameSite: "none",
-    secure: true,
+    // secure: true,
   });
 
   if (user) {
@@ -179,6 +179,7 @@ const updateUser = asyncHandler(async (req, res) => {
     user.photo = req.body.photo || photo;
 
     const updatedUser = await user.save();
+    // console.log(updatedUser);
     res.status(200).json({
       _id: updatedUser._id,
       name: updatedUser.name,
@@ -194,6 +195,7 @@ const updateUser = asyncHandler(async (req, res) => {
 });
 
 const changePassword = asyncHandler(async (req, res) => {
+  
   const user = await User.findById(req.user._id);
   const { oldPassword, password } = req.body;
 
@@ -215,6 +217,7 @@ const changePassword = asyncHandler(async (req, res) => {
     user.password = password;
     await user.save();
     res.status(200).send("Password change successful");
+   
   } else {
     res.status(400);
     throw new Error("Old password is incorrect");
