@@ -37,6 +37,8 @@ const createProduct = asyncHandler(async (req, res) => {
     image: fileData,
   });
 
+  // console.log(product)
+
   res.status(201).json(product);
 
   });

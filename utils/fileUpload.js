@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
       null,
       new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
      
-    ); // 22/12/2022  27:12:2022
+    ); // 22/12/2022  27:12:2022 10:01:2023 10-01-2023-abcd.jpg
   },
 });
 
